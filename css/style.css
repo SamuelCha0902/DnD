@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap');
+/* LES COULEURS*/
+:root {
+    /* Fond et Structures (Adieu le noir pur !) */
+    --pierre-sombre: #1a1c22;  /* Un gris-bleu très profond et élégant */
+    --dalle-donjon: #242831;   /* Pour tes panneaux et tes cartes */
+    --survol-acier: #2d323d;   /* Pour l'effet au passage de la souris */
+
+    /* Accents et Métaux */
+    --or-ancien: #c5a059;      /* Un or plus doux, moins "flashy" */
+    --or-lumineux: #e6c68a;    /* Pour les titres qui doivent ressortir */
+    --acier-froid: #8e94a5;    /* Un gris bleuté pour les détails secondaires */
+    
+    /* Énergie et Alerte */
+    --sang-seche: #7b1d1d;     /* Un rouge profond pour les PV ou le danger */
+    --brume-arcane: #5d5d91;   /* Un violet/bleu sourd pour la magie */
+
+    /* Textes (Optimisés pour le confort) */
+    --parchemin-clair: #e3e4e8;/* Blanc cassé pour le texte principal */
+    --brume-grise: #a0a4b0;    /* Pour les textes moins importants */
+}
+
+* {
+    margin: 0px;
+    background-color: var(--pierre-sombre);
+}
+
+html {
+    font-family: "Cinzel Decorative", serif;
+    font-weight: 700;
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px; /* Pour que le titre ne soit pas caché par la navbar */
+}
+/*  BARRE DE NAVIGUATION*/
+/* Style par défaut des liens */
+nav ul{
+    display: flex;
+    list-style: none;
+    background-color: var(--dalle-donjon);
+    margin: 0px;
+    padding: 0px;
+    justify-content: center;
+}
+.nav ul li{
+    padding: 20px 0px;
+    position: relative;
+}
+.nav ul li a {
+    padding:20px;
+    color: var(--parchemin-clair);
+    text-decoration: none;
+    background-color: var(--dalle-donjon);
+}
+/* Style quand la page est ACTIVE */
+.nav ul li.active a {
+    color: var(--or-ancien); /* Une couleur dorée par exemple */
+    font-weight: bold;
+    border-bottom: 2px solid var(--or-ancien);
+}
+/* effet au survol pour les autres */
+.nav ul li a:hover {
+    background-color: #2d323d;
+    transition: 0.4s;
+}
+.sousNav{
+    display: none; 
+    position: absolute; /* Il "flotte" au-dessus du contenu */
+    top: 100%;          /* Juste en-dessous du bouton */
+    left: 0;
+    background-color: var(--dalle-donjon);
+    min-width: 100%;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+    border: 1px solid var(--or-ancien);
+    z-index: 1000;      /* Passe devant tout le reste */
+}
+/* Style des liens dans le sous-menu */
+.sousNav li {
+    background-color: var(--dalle-donjon);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sousNav a {
+    font-size: 0.9rem;
+}
+
+/* AFFICHER AU SURVOL */
+.sousNavAct:hover .sousNav {
+    display: block;
+    animation: fadeIn 0.2s ease-in; /* Petit effet de fondu */
+}
+
+.sousNav a:hover {
+    background-color: var(--survol-acier);
+    color: var(--or-lumineux);
+    padding-left: 25px; /* Petit décalage élégant */
+}
+
+/* Animation de fondu */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/*---------------------------------------------------------------------------------*/
+
+/*  HAUT DE PAGE / HEADER */
+header {
+    background-color: var(--survol-acier);
+    text-align: center;
+    color: var(--or-lumineux);
+    font-size: 25px;
+    padding: 10px;
+    font-family: "Cinzel Decorative", serif;
+    font-weight: 700;
+}
+/*---------------------------------------------------------------------------------*/
+
+/* CONTENEUR PRINCIPAL*/
+.mainContainer{
+    display: flex;
+    gap: 40px;           /* Espace entre le menu et le texte */
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+/* 2. Le menu latéral */
+.sommaire {
+    width: 250px;        /* Largeur du sommaire */
+    flex-shrink: 0;      /* Empêche le menu de s'écraser */
+}
+.sommaire nav {
+    position: sticky;    /* LA MAGIE EST ICI */
+    top: 100px;          /* Distance par rapport au haut de l'écran */
+    background-color: var(--dalle-donjon);
+    border: 1px solid var(--or-ancien);
+    padding: 20px;
+    border-radius: 4px;
+}
+.sommaire h3 {
+    color: var(--or-lumineux);
+    border-bottom: 1px solid var(--sang-seche);
+    margin-bottom: 15px;
+    background-color: inherit;
+}
+.sommaire ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+.sommaire li {
+    margin-bottom: 12px;
+    background-color: inherit;
+}
+.sommaire a {
+    color: var(--brume-grise);
+    text-decoration: none;
+    transition: 0.3s;
+    background-color: inherit;
+}
+.sommaire a:hover {
+    color: var(--or-lumineux);
+}
+/* 3. Le contenu */
+.contenu {
+    flex-grow: 1;        /* Prend tout l'espace restant */
+    border: 1px solid var(--or-ancien);
+    padding: 20px;
+    border-radius: 4px;
+    background-color: var(--dalle-donjon);
+}
+.contenu h2, p, h1{
+    background-color: var(--dalle-donjon);
+    color: var(--parchemin-clair);
+}
+.contenu h1{
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--sang-seche);
+}
+
+/* SOUNDBOARD*/
+/* Le conteneur de la catégorie */
+.sound-category {
+    border: 1px solid var(--or-ancien);
+    border-radius: 4px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+/* L'en-tête cliquable */
+.sound-category summary {
+    padding: 15px 20px;
+    list-style: none; /* Cache la flèche par défaut */
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Cinzel', serif;
+    color: var(--or-lumineux);
+    user-select: none;
+}
+
+/* Retirer la flèche par défaut sur Safari/Chrome */
+.sound-category summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Changement d'icône quand c'est ouvert */
+.sound-category[open] .chevron {
+    transform: rotate(180deg);
+    color: var(--sang-seche);
+}
+
+.category-title {
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+/* La grille à l'intérieur de la section déroulée */
+.sound-grid {
+    
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+    border-top: 1px solid rgba(166, 138, 86, 0.3); /* Ligne subtile or-vieux */
+    animation: slideDown 0.4s ease-out;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Le bouton */
+.sound-btn {
+    background-color: var(--dalle-donjon);
+    border: 1px solid var(--or-ancien);
+    border-radius: 5px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--parchemin-clair);
+}
+
+.sound-btn:hover {
+    background-color: var(--survol-acier);
+    box-shadow: 0 0 5px var(--or-ancien);
+    transform: translateY(-3px);
+}
+
+.sound-btn:active {
+    transform: scale(0.99);
+    background-color: var(--sang-seche);
+}

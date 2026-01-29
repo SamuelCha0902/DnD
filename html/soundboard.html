@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/style.css" rel="stylesheet" type="text/css" />
+    <title>D&D</title>
+</head>
+<body>
+    <header>Duckware fait du JDR</header>
+    <nav class="nav">
+        <ul>
+            <li>
+                <a href="../index.html">Accueil</a>
+            </li>
+            <li class="sousNavAct">
+                <a href="./sonPerso.html">Créer son personnage</a>
+                <ul class="sousNav">
+                    <li><a href="./sonPerso.html#tuto">Le Tutoriel</a></li>
+                    <li><a href="./sonPerso.html#classe">Les Classes</a></li>
+                    <li><a href="./sonPerso.html#historique">Les Historiques</a></li>
+                    <li><a href="./sonPerso.html#espece">Les Espèces</a></li>
+                </ul>
+            </li>
+            <li class="active" >
+                <a href="./soundboard.html">Soundboard</a>
+            </li>
+            <li>
+                <a href="./univers.html">L'univers de ...</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="mainContainer">
+        <section class="contenu">
+            <h1>Le Grimoire sonore</h1>
+            
+            <details class="sound-category">
+                <summary>
+                    <span class="category-title">🍻 Taverne</span>
+                    <span class="chevron">▼</span>
+                </summary>
+                <div class="sound-grid">
+                    <button class="sound-btn" onclick="jouerSon('epee')">Verre</button>
+                    <button class="sound-btn" onclick="jouerSon('bouclier')">Skoll</button>
+                    </div>
+            </details>
+
+            <details class="sound-category">
+                <summary>
+                    <span class="category-title">⚔️ Combat</span>
+                    <span class="chevron">▼</span>
+                </summary>
+                <div class="sound-grid">
+                    <button class="sound-btn" onclick="jouerSon('epee')">Épée</button>
+                    <button class="sound-btn" onclick="jouerSon('bouclier')">Bouclier</button>
+                    <button class="sound-btn" onclick="jouerSon('arc')">Arc</button>
+                    </div>
+            </details>
+
+            <details class="sound-category">
+                <summary>
+                    <span class="category-title">✨ Sorts & Arcanes</span>
+                    <span class="chevron">▼</span>
+                </summary>
+                <div class="sound-grid">
+                    <button class="sound-btn" onclick="jouerSon('feu')">Boule de Feu</button>
+                    <button class="sound-btn" onclick="jouerSon('soin')">Soin Divin</button>
+                    <button class="sound-btn" onclick="jouerSon('soin')">Tonerre</button>
+                    <button class="sound-btn" onclick="jouerSon('soin')">Projectile</button>
+                </div>
+            </details>
+
+            <details class="sound-category">
+                <summary>
+                    <span class="category-title">🧌 Monstres</span>
+                    <span class="chevron">▼</span>
+                </summary>
+                <div class="sound-grid">
+                    <button class="sound-btn" onclick="jouerSon('feu')">Gobelin</button>
+                    <button class="sound-btn" onclick="jouerSon('soin')">Orc</button>
+                </div>
+            </details>
+
+            <details class="sound-category">
+                <summary>
+                    <span class="category-title">🌲 Ambiance</span>
+                    <span class="chevron">▼</span>
+                </summary>
+                <div class="sound-grid">
+                    <button class="sound-btn" onclick="jouerSon('feu')">Boule de Feu</button>
+                    <button class="sound-btn" onclick="jouerSon('soin')">Soin Divin</button>
+                </div>
+            </details>
+        </section>
+    </div>
+    <script src="../assets/js/audio.js"></script>
+</body>
+</html>
