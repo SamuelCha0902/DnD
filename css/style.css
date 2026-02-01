@@ -50,18 +50,29 @@ nav ul{
     padding:20px;
     color: var(--parchemin-clair);
     text-decoration: none;
-    background-color: var(--dalle-donjon);
+    background-color: var(--survol-acier);
+    /*position: relative;*/
+}
+
+.nav a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--or-ancien);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+.nav a:hover::after {
+    transform: scaleX(1);
 }
 /* Style quand la page est ACTIVE */
 .nav ul li.active a {
     color: var(--or-ancien); /* Une couleur dorée par exemple */
     font-weight: bold;
     border-bottom: 2px solid var(--or-ancien);
-}
-/* effet au survol pour les autres */
-.nav ul li a:hover {
-    background-color: #2d323d;
-    transition: 0.4s;
 }
 .sousNav{
     display: none; 
@@ -104,14 +115,17 @@ nav ul{
 /*---------------------------------------------------------------------------------*/
 
 /*  HAUT DE PAGE / HEADER */
-header {
+header{
     background-color: var(--survol-acier);
-    text-align: center;
-    color: var(--or-lumineux);
-    font-size: 25px;
-    padding: 10px;
-    font-family: "Cinzel Decorative", serif;
-    font-weight: 700;
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    padding: 20px;
+}
+header img{
+    background-color: var(--survol-acier);
+    width: 200px;
+    vertical-align: middle;
 }
 /*---------------------------------------------------------------------------------*/
 
@@ -253,4 +267,22 @@ header {
 .sound-btn:active {
     transform: scale(0.99);
     background-color: var(--sang-seche);
+}
+
+/* Bouton Stop */
+.stop-btn {
+    display: block;
+    margin: 40px auto;
+    padding: 15px 30px;
+    background-color: var(--sang-seche);
+    color: white;
+    border: none;
+    font-family: 'Cinzel', serif;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.stop-btn:hover {
+    background-color: #a00000;
 }
