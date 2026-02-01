@@ -5,7 +5,7 @@ function jouerSon(nomFichier, estUneBoucle = false) {
     // 1. On définit le chemin vers le fichier
     // Si ton site est dans un sous-dossier sur GitHub, 
     // ajoute le nom du projet devant : '/nom-du-projet/assets/sounds/...'
-    const chemin = '/DandD/assets/sounds/' + nomFichier + '.mp3';
+    const chemin = '/DnD/assets/sounds/' + nomFichier + '.mp3';
 
     // 2. Cas d'une AMBIANCE (Boucle)
     if (estUneBoucle) {
