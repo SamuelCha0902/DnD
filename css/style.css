@@ -51,7 +51,6 @@ nav ul{
     color: var(--parchemin-clair);
     text-decoration: none;
     background-color: var(--survol-acier);
-    /*position: relative;*/
 }
 
 .nav a::after {
@@ -69,17 +68,15 @@ nav ul{
     transform: scaleX(1);
 }
 /* Style quand la page est ACTIVE */
-.nav ul li.active a {
-    color: var(--or-ancien); /* Une couleur dorée par exemple */
-    font-weight: bold;
-    border-bottom: 2px solid var(--or-ancien);
+.nav ul li.active>a {
+    color: var(--or-ancien);
 }
 .sousNav{
     display: none; 
-    position: absolute; /* Il "flotte" au-dessus du contenu */
-    top: 100%;          /* Juste en-dessous du bouton */
+    position: absolute;
+    top: 100%;
     left: 0;
-    background-color: var(--dalle-donjon);
+    background-color: var(--survol-acier);
     min-width: 100%;
     box-shadow: 0 8px 16px rgba(0,0,0,0.6);
     border: 1px solid var(--or-ancien);
@@ -87,7 +84,8 @@ nav ul{
 }
 /* Style des liens dans le sous-menu */
 .sousNav li {
-    background-color: var(--dalle-donjon);
+    text-align: center;
+    background-color: var(--survol-acier);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -102,8 +100,6 @@ nav ul{
 }
 
 .sousNav a:hover {
-    background-color: var(--survol-acier);
-    color: var(--or-lumineux);
     padding-left: 25px; /* Petit décalage élégant */
 }
 
@@ -127,6 +123,7 @@ header img{
     width: 200px;
     vertical-align: middle;
 }
+
 /*---------------------------------------------------------------------------------*/
 
 /* CONTENEUR PRINCIPAL*/
