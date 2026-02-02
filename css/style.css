@@ -283,3 +283,56 @@ header img{
 .stop-btn:hover {
     background-color: #a00000;
 }
+
+.long-music-player {
+    background-color: var(--dalle-donjon);
+    border: 2px solid var(--or-ancien);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px auto;
+    max-width: 500px;
+    text-align: center;
+}
+
+/* La barre de progression (le slider) */
+#seek-slider {
+    width: 100%;
+    cursor: pointer;
+    accent-color: var(--or-ancien); /* Couleur du curseur */
+    background: var(--pierre-sombre);
+    height: 5px;
+    border-radius: 5px;
+}
+
+.time-display {
+    color: var(--brume-grise);
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+
+.player-controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.player-btn {
+    background: none;
+    border: 1px solid var(--or-ancien);
+    color: var(--or-lumineux);
+    padding: 10px 15px;
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+}
+
+.player-btn:hover {
+    background-color: var(--survol-acier);
+}
+
+.main-btn {
+    font-size: 1.5rem;
+    border-radius: 50%; /* Bouton rond pour Play */
+    width: 50px;
+    height: 50px;
+}

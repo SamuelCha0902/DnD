@@ -1,45 +1,105 @@
-// On crée un dictionnaire pour stocker les sons en boucle (loops) actifs
-const sonsActifs = {};
+// ==========================================
+// 1. GESTION DES BRUITAGES ET BOUCLES COURTES
+// ==========================================
+const sonsActifs = {}; 
 
 function jouerSon(nomFichier, estUneBoucle = false) {
-    // 1. On définit le chemin vers le fichier
-    // Si ton site est dans un sous-dossier sur GitHub, 
-    // ajoute le nom du projet devant : '/nom-du-projet/assets/sounds/...'
     const chemin = '/DnD/assets/sounds/' + nomFichier + '.mp3';
 
-    // 2. Cas d'une AMBIANCE (Boucle)
     if (estUneBoucle) {
         if (sonsActifs[nomFichier]) {
-            // Si le son joue déjà, on l'arrête (Toggle)
             sonsActifs[nomFichier].pause();
             delete sonsActifs[nomFichier];
-            event.currentTarget.classList.remove('active'); // On retire l'effet visuel
+            if(event) event.currentTarget.classList.remove('active');
         } else {
-            // On crée le son, on active la boucle et on joue
             const audio = new Audio(chemin);
             audio.loop = true;
             audio.play();
             sonsActifs[nomFichier] = audio;
-            event.currentTarget.classList.add('active'); // On ajoute l'effet visuel
+            if(event) event.currentTarget.classList.add('active');
         }
-    } 
-    // 3. Cas d'un BRUITAGE (One-shot)
-    else {
+    } else {
         const audio = new Audio(chemin);
-        audio.play().catch(error => {
-            console.error("Erreur de lecture : Vérifiez le nom du fichier et le chemin.", error);
-        });
+        audio.play();
     }
 }
 
+// ==========================================
+// 2. GESTION DU LECTEUR DE MUSIQUE LONGUE
+// ==========================================
+let currentLongMusic = new Audio();
+
+// On récupère les éléments HTML (ils doivent exister dans ta page)
+const playPauseBtn = document.getElementById('play-pause-btn');
+const seekSlider = document.getElementById('seek-slider');
+const currentTimeDisplay = document.getElementById('current-time');
+const durationDisplay = document.getElementById('duration');
+
+function chargerAmbianceLongue(nomFichier, titre) {
+    const chemin = '/DnD/assets/sounds/' + nomFichier + '.mp3';
+    
+    // On change la source et on joue
+    currentLongMusic.src = chemin;
+    document.getElementById('current-track-title').innerText = titre;
+    currentLongMusic.play();
+    
+    if(playPauseBtn) playPauseBtn.innerText = "⏸";
+}
+
+function togglePlay() {
+    if (currentLongMusic.paused) {
+        currentLongMusic.play();
+        if(playPauseBtn) playPauseBtn.innerText = "⏸";
+    } else {
+        currentLongMusic.pause();
+        if(playPauseBtn) playPauseBtn.innerText = "▶";
+    }
+}
+
+function skip(secondes) {
+    currentLongMusic.currentTime += secondes;
+}
+
+// Mise à jour de la barre pendant la lecture
+currentLongMusic.ontimeupdate = () => {
+    if (seekSlider && !isNaN(currentLongMusic.duration)) {
+        const progress = (currentLongMusic.currentTime / currentLongMusic.duration) * 100;
+        seekSlider.value = progress;
+        
+        if(currentTimeDisplay) currentTimeDisplay.innerText = formatTime(currentLongMusic.currentTime);
+        if(durationDisplay) durationDisplay.innerText = formatTime(currentLongMusic.duration);
+    }
+};
+
+// Quand on déplace le curseur manuellement
+if(seekSlider) {
+    seekSlider.oninput = () => {
+        const seekTo = currentLongMusic.duration * (seekSlider.value / 100);
+        currentLongMusic.currentTime = seekTo;
+    };
+}
+
+function formatTime(secondes) {
+    let min = Math.floor(secondes / 60);
+    let sec = Math.floor(secondes % 60);
+    return min + ":" + (sec < 10 ? '0' + sec : sec);
+}
+
+// ==========================================
+// 3. FONCTION DE SILENCE TOTAL
+// ==========================================
 function stopperTout() {
-    // On coupe toutes les boucles en cours
+    // Stop les boucles courtes
     for (let cle in sonsActifs) {
         sonsActifs[cle].pause();
+        delete sonsActifs[cle];
     }
-    // On vide le dictionnaire
-    for (let cle in sonsActifs) delete sonsActifs[cle];
     
-    // On retire le style "actif" de tous les boutons
+    // Stop la musique longue
+    currentLongMusic.pause();
+    currentLongMusic.currentTime = 0;
+
+    // Reset visuel
     document.querySelectorAll('.sound-btn').forEach(btn => btn.classList.remove('active'));
+    if(playPauseBtn) playPauseBtn.innerText = "▶";
 }
